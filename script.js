@@ -17,6 +17,12 @@ let lyrics;
 // resulting track
 let track;
 
+// boolean result for search input
+let result;
+
+// how many times the search input appears in song
+let instances;
+
 // albums to search 
 const folklore = [
     {
@@ -148,31 +154,33 @@ const folklore = [
 /***** FUNCTIONS *****/
 
 // search via input field
-
 function enterSearch(){
     search = searchInput.value;
 
     // returns song object where search equals true
     let songs = folklore.filter(function(song) {
    // boolean result 
-    song.lyrics.includes(search);
+    let result = song.lyrics.includes(search);
+    console.log(result);
     console.log(song);
     // gets lyrics for each song
     lyrics = song.lyrics;
-
+    
     // gets track name for each song and store in list 
-    track = `<li>${song.track}</li>`;
-    console.log(track);
+    if (result) {
+        track = `<li>${song.track}</li>`;
+        console.log(track);
+    }
 
-    // return the track 
+    // splits string where search result is found to create array
+     instances = lyrics.split(search).length - 1;
+
+    // why do I need to return the track for the length to work? 
     return track;
 });
 
     // how many songs contained search 
     let numOfSongs = songs.length; 
-
-    // search amount of times word is sung in each song's lyrics
-    let instances = lyrics.split(search).length - 1;
 
     console.log(instances);
 
@@ -189,8 +197,7 @@ function enterSearch(){
     return search;
 }
 
-console.log(enterSearch());
-
+// old search function that didn't work
 // let results = searchButton.addEventListener('click', () => {
 //     search = searchInput.value; 
 
@@ -200,6 +207,19 @@ console.log(enterSearch());
 
 
 
+/***** ISSUES *****//*
+
+- Don't know why I need to return track for length of array to work
+
+- If you search again, the song count increases 
+
+- Searching a word in 'the 1' shows a true result but display is for false 
+
+- Searching a partial word shows a true result
+
+- Could only access search result with adding onclick to html
+
+*/
 
 
 
