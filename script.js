@@ -1,8 +1,26 @@
+// search input field 
 const searchInput = document.getElementById('search-input');
+// search button 
 const searchButton = document.getElementById('search-button');
 
+// area to display results
+let display = document.getElementById('results');
+
 // user entered search
-let search = prompt();
+let search; // = prompt();
+
+let results = searchButton.addEventListener('click', () => {
+    search = searchInput.value; 
+    
+    //  if (instances > 0) {
+    //      return display.innerHTML = result;
+    //  }
+
+     console.log ( `You searched for: ${search}` );
+
+ });
+
+ console.log(results);
 
 // resulting lyrics containing search
 let lyrics;
@@ -138,60 +156,39 @@ const folklore = [
 
 ];
 
-
-// returns object
-let songs = folklore.find(function(song) {
+// returns song object where search equals true
+let songs = folklore.filter(function(song) {
+   // boolean result 
     song.lyrics.includes(search);
-    track = song.track;
+    console.log(song);
+    // gets lyrics for each song
     lyrics = song.lyrics;
+
+    // gets track name for each song and store in list 
+    track = `<li>${song.track}</li>`;
+    console.log(track);
+
+    // return the track 
     return track;
 });
 
-// returns array
-let arrOfSongs = folklore.filter(album => album.lyrics.includes(search));
-let numOfSongs = arrOfSongs.length; 
-
-
-console.log(arrOfSongs.join(''));
+// how many songs contained search 
+let numOfSongs = songs.length; 
 
 // find out how to access lyrics directly 
 
-// count amount of character in string (how many times is word in song)
-var str = lyrics;
-let instances = str.split(search).length - 1;
-
-// searchButton.addEventListener('click', () => {
-//     let search = searchInput.value; 
-
-//     console.log(search);
-//     console.log('Instances: ' + instances);s
-//      if (instances > 0) {
-//          return display.innerHTML = result;
-//      }
-
-//  })
-
-let result = 
-`<p>Taylor sings the word '${search}' ${instances} times in ${numOfSongs} songs. These songs are:</p>
-<ul><li>${track}</li></ul>
-`;
-
-
-let display = document.getElementById('results');
+// search amount of times word is sung in each song's lyrics
+let instances = lyrics.split(search).length - 1;
 
 console.log(instances);
 
+// message for true or false search result
 if (instances > 0) {
-    display.innerHTML = result;
+    display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} times in ${numOfSongs} songs. These songs are:</p>
+    <ul>${track}</ul>`;
 } else {
     display.innerHTML = 'Taylor never sings that word!';
 }
-
-
-
-/* `Taylor sings the word ${search} ${instances} times in ${numberOfSongs} songs.` 
-List of songs and corresponding album
-*/
 
 
 
