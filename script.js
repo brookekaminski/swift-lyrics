@@ -1,3 +1,5 @@
+/***** VARIABLES *****/
+
 // search input field 
 const searchInput = document.getElementById('search-input');
 // search button 
@@ -6,21 +8,8 @@ const searchButton = document.getElementById('search-button');
 // area to display results
 let display = document.getElementById('results');
 
-// user entered search
-let search; // = prompt();
-
-let results = searchButton.addEventListener('click', () => {
-    search = searchInput.value; 
-    
-    //  if (instances > 0) {
-    //      return display.innerHTML = result;
-    //  }
-
-     console.log ( `You searched for: ${search}` );
-
- });
-
- console.log(results);
+// user entered search word
+let search = ''; // = prompt();
 
 // resulting lyrics containing search
 let lyrics;
@@ -156,8 +145,15 @@ const folklore = [
 
 ];
 
-// returns song object where search equals true
-let songs = folklore.filter(function(song) {
+/***** FUNCTIONS *****/
+
+// search via input field
+
+function enterSearch(){
+    search = searchInput.value;
+
+    // returns song object where search equals true
+    let songs = folklore.filter(function(song) {
    // boolean result 
     song.lyrics.includes(search);
     console.log(song);
@@ -172,23 +168,39 @@ let songs = folklore.filter(function(song) {
     return track;
 });
 
-// how many songs contained search 
-let numOfSongs = songs.length; 
+    // how many songs contained search 
+    let numOfSongs = songs.length; 
 
-// find out how to access lyrics directly 
+    // search amount of times word is sung in each song's lyrics
+    let instances = lyrics.split(search).length - 1;
 
-// search amount of times word is sung in each song's lyrics
-let instances = lyrics.split(search).length - 1;
+    console.log(instances);
 
-console.log(instances);
+    // message for true or false search result
+    if (search === ''){
+        display.innerHTML = '';
+    } else if (instances > 0) {
+        display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} times in ${numOfSongs} songs. These songs are:</p>
+        <ul>${track}</ul>`;
+    } else {
+        display.innerHTML = 'Taylor never sings that word!';
+    }  
 
-// message for true or false search result
-if (instances > 0) {
-    display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} times in ${numOfSongs} songs. These songs are:</p>
-    <ul>${track}</ul>`;
-} else {
-    display.innerHTML = 'Taylor never sings that word!';
+    return search;
 }
+
+console.log(enterSearch());
+
+// let results = searchButton.addEventListener('click', () => {
+//     search = searchInput.value; 
+
+//      console.log ( `You searched for: ${search}` );
+
+//  });
+
+
+
+
 
 
 
