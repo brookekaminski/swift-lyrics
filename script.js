@@ -4,9 +4,8 @@
 const searchInput = document.getElementById('search-input');
 // search button 
 const searchButton = document.getElementById('search-button');
-
 // area to display results
-let display = document.getElementById('results');
+const display = document.getElementById('results');
 
 // user entered search word
 let search = ''; // = prompt();
@@ -147,7 +146,54 @@ const folklore = [
         
         And when I felt like I was an old cardigan under someone's bed
         You put me on and said I was your favorite`
-    } 
+    },
+    {
+        track: 'the last great american dynasty',
+        length: '3:59',
+        lyrics: `Rebekah rode up on the afternoon train
+        It was sunny
+        Her saltbox house on the coast
+        Took her mind off St. Louis
+        Bill was the heir to the Standard Oil name and money
+        And the town said, "How did a middle-class divorcée do it?"
+        The wedding was charming, if a little gauche
+        There's only so far new money goes
+        They picked out a home and called it "Holiday House"
+        Their parties were tasteful, if a little loud
+        The doctor had told him to settle down
+        It must have been her fault his heart gave out
+        And they said
+        "There goes the last great American dynasty"
+        "Who knows if she never showed up, what could've been"
+        "There goes the maddest woman this town has ever seen"
+        "She had a marvelous time ruinin' everything"
+        Rebekah gave up on the Rhode Island set
+        Forever
+        Flew in all her Bitch Pack friends from the city
+        Filled the pool with champagne and swam with the big names
+        And blew through the money on the boys and the ballet
+        And losin' on card game bets with Dalí
+        And they said
+        "There goes the last great American dynasty"
+        "Who knows if she never showed up, what could've been"
+        "There goes the most shameless woman this town has ever seen"
+        "She had a marvelous time ruinin' everything"
+        They say she was seen on occasion
+        Pacing the rocks, staring out at the midnight sea
+        And in a feud with her neighbour
+        She stole his dog and dyed it key lime green
+        50 years is a long time
+        Holiday house sat quietly on that beach
+        Free of women with madness, their men and bad habits
+        And then it was bought by me
+        Who knows if I never showed up what could've been
+        There goes the loudest woman this town has ever seen
+        I had a marvelous time ruinin' everything
+        I had a marvelous time ruinin' everything
+        A marvelous time ruinin' everything
+        A marvelous time
+        I had a marvelous time`
+    }  
 
 ];
 
@@ -155,10 +201,11 @@ const folklore = [
 
 // search via input field
 function enterSearch(){
-    search = searchInput.value;
+    // users search value 
+    let search = searchInput.value;
 
     // returns song object where search equals true
-    let songs = folklore.filter(function(song) {
+    let songs = folklore.filter(song => {
    // boolean result 
     let result = song.lyrics.includes(search);
     console.log(result);
@@ -170,14 +217,17 @@ function enterSearch(){
     if (result) {
         track = `<li>${song.track}</li>`;
         console.log(track);
+
+        // splits string where search result is found to create array to count number of times search appears in song
+         instances = lyrics.split(search).length - 1;
+
+        return true;
+    } else {
+        return false;
     }
-
-    // splits string where search result is found to create array
-     instances = lyrics.split(search).length - 1;
-
-    // why do I need to return the track for the length to work? 
-    return track;
 });
+
+    console.log(`Number of songs: ${songs.length}`);
 
     // how many songs contained search 
     let numOfSongs = songs.length; 
@@ -187,7 +237,16 @@ function enterSearch(){
     // message for true or false search result
     if (search === ''){
         display.innerHTML = '';
-    } else if (instances > 0) {
+    } else if (instances === 1 && numOfSongs === 1) {
+        display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} time in ${numOfSongs} song. This song is:</p>
+        <ul>${track}</ul>`;
+    } else if (instances > 1 && numOfSongs === 1) {
+        display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} times in ${numOfSongs} song. This song is:</p>
+        <ul>${track}</ul>`;
+    } else if (instances === 1 && numOfSongs > 1) {
+        display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} time in ${numOfSongs} songs. These songs are:</p>
+        <ul>${track}</ul>`;
+    } else if (instances > 1 && numOfSongs > 1) {
         display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} times in ${numOfSongs} songs. These songs are:</p>
         <ul>${track}</ul>`;
     } else {
@@ -197,23 +256,7 @@ function enterSearch(){
     return search;
 }
 
-// old search function that didn't work
-// let results = searchButton.addEventListener('click', () => {
-//     search = searchInput.value; 
-
-//      console.log ( `You searched for: ${search}` );
-
-//  });
-
-
-
 /***** ISSUES *****//*
-
-- Don't know why I need to return track for length of array to work
-
-- If you search again, the song count increases 
-
-- Searching a word in 'the 1' shows a true result but display is for false 
 
 - Searching a partial word shows a true result
 
@@ -228,3 +271,4 @@ function enterSearch(){
 
 
 
+ 
