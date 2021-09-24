@@ -7,21 +7,6 @@ const searchButton = document.getElementById('search-button');
 // area to display results
 const display = document.getElementById('results');
 
-// user entered search word
-let search = ''; // = prompt();
-
-// resulting lyrics containing search
-let lyrics;
-
-// resulting track
-let track;
-
-// boolean result for search input
-let result;
-
-// how many times the search input appears in song
-let instances;
-
 // albums to search 
 const folklore = [
     {
@@ -197,61 +182,80 @@ const folklore = [
 
 ];
 
+// user search
+let search;
+
+// array of songs found via search
+let tracks = [];
+
+// list of stored track titles via search
+let list;
+
+// amount of times word appears in song
+let instances;
+
 /***** FUNCTIONS *****/
 
 // search via input field
 function enterSearch(){
     // users search value 
-    let search = searchInput.value;
+    search = searchInput.value;
 
     // returns song object where search equals true
     let songs = folklore.filter(song => {
    // boolean result 
     let result = song.lyrics.includes(search);
     console.log(result);
-    console.log(song);
+    console.log(song.track);
     // gets lyrics for each song
-    lyrics = song.lyrics;
+    let lyrics = song.lyrics;
+    
     
     // gets track name for each song and store in list 
     if (result) {
-        track = `<li>${song.track}</li>`;
-        console.log(track);
 
-        // splits string where search result is found to create array to count number of times search appears in song
-         instances = lyrics.split(search).length - 1;
+        
+        tracks.push(`<li>${song.track}</li>`);
+        list = tracks.join(' ');
+
+        // create new regular expression to search variable 
+        let regex =  new RegExp(search,'gi'); 
+        // store matches in variable
+        instances = lyrics.match(regex,'').length; 
+
+        //tracks.join(' ');
+        console.log(`instances: ${instances}`);
 
         return true;
     } else {
         return false;
     }
 });
-
     console.log(`Number of songs: ${songs.length}`);
 
     // how many songs contained search 
     let numOfSongs = songs.length; 
-
-    console.log(instances);
 
     // message for true or false search result
     if (search === ''){
         display.innerHTML = '';
     } else if (instances === 1 && numOfSongs === 1) {
         display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} time in ${numOfSongs} song. This song is:</p>
-        <ul>${track}</ul>`;
+        <ul>${list}</ul>`;
     } else if (instances > 1 && numOfSongs === 1) {
         display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} times in ${numOfSongs} song. This song is:</p>
-        <ul>${track}</ul>`;
+        <ul>${list}</ul>`;
     } else if (instances === 1 && numOfSongs > 1) {
         display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} time in ${numOfSongs} songs. These songs are:</p>
-        <ul>${track}</ul>`;
+        <ul>${list}</ul>`;
     } else if (instances > 1 && numOfSongs > 1) {
         display.innerHTML = `<p>Taylor sings the word '${search}' ${instances} times in ${numOfSongs} songs. These songs are:</p>
-        <ul>${track}</ul>`;
+        <ul>${list}</ul>`;
     } else {
         display.innerHTML = 'Taylor never sings that word!';
     }  
+
+    tracks = [];
 
     return search;
 }
@@ -259,9 +263,9 @@ function enterSearch(){
 /***** ISSUES *****//*
 
 - Searching a partial word shows a true result
+    - tried to fix with regex but same results so far
 
 - Could only access search result with adding onclick to html
-
 */
 
 
