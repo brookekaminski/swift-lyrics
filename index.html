@@ -7,11 +7,21 @@
     <title>Swift Lyrics</title>
 </head>
 <body>
-    <div class ="search-container">
-        <input id="search-input" type="text" placeholder="Search a lyric...">
-        <button id="search-button" onclick="enterSearch();">Search</button>
-    </div>
-    <div id="results"></div>
+
+    <header>
+        <h1>folklore lyric search</h1>
+    </header>   
+    <main>
+        <section>
+            <p>Search to find out how many times specific words appear in Taylor Swift songs.</p>
+        </section>
+        <section class ="search-container">
+            <input id="search-input" type="text" placeholder="Search a lyric...">
+            <button id="search-button" onclick="enterSearch();">search</button>
+        </section>
+        <section id="results"></section>
+    </main>
+
     <script src="songs.js"></script>
     <script src="script.js"></script>
 </body>

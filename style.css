@@ -1,3 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap");
+body {
+  margin: 30px;
+  background: url(/images/bg.jpg);
+  background-size: cover;
+  font-family: "IM Fell English", serif;
+  text-align: center; }
+
+h1 {
+  margin-top: 100px; }
+
+button,
+input {
+  font: inherit; }
+
+input {
+  margin-bottom: 20px;
+  padding: 10px 30px;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 0;
+  letter-spacing: 1px; }
+
+button {
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 30px;
+  background: #867592;
+  font-size: 1.1em;
+  border: none;
+  -webkit-transition: .3s ease;
+  -o-transition: .3s ease;
+  transition: .3s ease; }
+
+input[type=text]:focus {
+  border-bottom: 2px solid transparent; }
+
 .search-container {
-    text-align: center;
-}
+  text-align: center; }
+
+section {
+  max-width: 500px;
+  margin: 0 auto; }
+
+#results {
+  text-align: left; }
+
+/*# sourceMappingURL=style.css.map */

@@ -185,6 +185,8 @@ const folklore = [
 // user search
 let search;
 
+let lyrics;
+
 // array of songs found via search
 let tracks = [];
 
@@ -192,7 +194,7 @@ let tracks = [];
 let list;
 
 // amount of times word appears in song
-let instances;
+let instances = [];
 
 /***** FUNCTIONS *****/
 
@@ -203,38 +205,44 @@ function enterSearch(){
 
     // returns song object where search equals true
     let songs = folklore.filter(song => {
-   // boolean result 
-    let result = song.lyrics.includes(search);
-    console.log(result);
-    console.log(song.track);
-    // gets lyrics for each song
-    let lyrics = song.lyrics;
-    
-    
-    // gets track name for each song and store in list 
-    if (result) {
 
-        
+   // boolean result 
+    //let result = song.lyrics.includes(search);
+    // gets lyrics for each song
+    lyrics = song.lyrics;
+
+    // create new regular expression to search variable 
+    let regex =  new RegExp('(?:^|\\s)(' + search + ')(?=\\s|$)', 'gmi');
+
+    // store matches in variable
+    let results = lyrics.match(regex);
+    
+    // check if search is found in lyrics
+    let isFound = regex.test(lyrics);
+
+    instances.push(results);
+
+    //console.log(`instances: ${instances}`);
+    //console.log(`number of instances: ${instances.length}`);
+
+    
+    //gets track name for each song and store in list 
+    if (isFound) {
+    
         tracks.push(`<li>${song.track}</li>`);
         list = tracks.join(' ');
 
-        // create new regular expression to search variable 
-        let regex =  new RegExp(search,'gi'); 
-        // store matches in variable
-        instances = lyrics.match(regex,'').length; 
-
-        //tracks.join(' ');
-        console.log(`instances: ${instances}`);
-
+           
         return true;
     } else {
         return false;
     }
 });
-    console.log(`Number of songs: ${songs.length}`);
 
     // how many songs contained search 
     let numOfSongs = songs.length; 
+
+    console.log(`Number of songs: ${songs.length}`);
 
     // message for true or false search result
     if (search === ''){
@@ -254,6 +262,10 @@ function enterSearch(){
     } else {
         display.innerHTML = 'Taylor never sings that word!';
     }  
+
+    if (instances === 13) {
+
+    }
 
     tracks = [];
 
