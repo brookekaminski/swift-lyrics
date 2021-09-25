@@ -185,7 +185,9 @@ const folklore = [
 // user search
 let search;
 
-let lyrics;
+let album;
+
+let songs;
 
 // array of songs found via search
 let tracks = [];
@@ -193,7 +195,7 @@ let tracks = [];
 // list of stored track titles via search
 let list;
 
-// amount of times word appears in song
+// amount of times wor//d appears in song
 let instances = [];
 
 /***** FUNCTIONS *****/
@@ -204,47 +206,51 @@ function enterSearch(){
     search = searchInput.value;
 
     // returns song object where search equals true
-    let songs = folklore.filter(song => {
+    let albums = discography.map(album => {
 
-   // boolean result 
-    //let result = song.lyrics.includes(search);
-    // gets lyrics for each song
-    lyrics = song.lyrics;
+        songs = album.tracklist.filter(song => {
 
-    // create new regular expression to search variable 
-    let regex =  new RegExp('(?:^|\\s)(' + search + ')(?=\\s|$)', 'gmi');
+        console.log(`song titles: ${song.track}`);
 
-    // store matches in variable
-    let results = lyrics.match(regex);
-    
-    // check if search is found in lyrics
-    let isFound = regex.test(lyrics);
+        // gets lyrics for each song
+        lyrics = song.lyrics;
 
-    instances.push(results);
+        // create new regular expression to search variable 
+        let regex =  new RegExp('(?:^,|^|\\s)(' + search + ')(?=\\s|$)', 'gmi');
 
-    //console.log(`instances: ${instances}`);
-    //console.log(`number of instances: ${instances.length}`);
+        // store matches in variable
+        let results = lyrics.match(regex);
+        
+        // check if search is found in lyrics
+        let isFound = regex.test(lyrics);
+        console.log(isFound);
 
-    
-    //gets track name for each song and store in list 
-    if (isFound) {
-    
-        tracks.push(`<li>${song.track}</li>`);
-        list = tracks.join(' ');
+        console.log(results);
 
-           
-        return true;
-    } else {
-        return false;
-    }
+        //gets track name for each song and store in list 
+        if (isFound) {
+
+            instances = Object.keys(results).length;
+        
+            tracks.push(`<li>${song.track}</li>`);
+            list = tracks.join(' ');
+            
+            return true;
+        } else {
+            return false;
+        }
+    });
+
 });
 
+
+
     // how many songs contained search 
-    let numOfSongs = songs.length; 
+    let numOfSongs = tracks.length; 
 
     console.log(`Number of songs: ${songs.length}`);
 
-    // message for true or false search result
+    //message for true or false search result
     if (search === ''){
         display.innerHTML = '';
     } else if (instances === 1 && numOfSongs === 1) {
