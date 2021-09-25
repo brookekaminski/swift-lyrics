@@ -49,4 +49,10 @@ section {
 #results {
   text-align: left; }
 
+.thirteen {
+  text-align: center; }
+  .thirteen strong {
+    color: #867592;
+    font-size: 48px; }
+
 /*# sourceMappingURL=style.css.map */
