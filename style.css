@@ -1,12 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap");
-@font-face {
-  font-family: 'nimbus_sans_lbold';
-  src: url("/fonts/NimbusSanL-Bol-webfont.eot");
-  src: url("/fonts/NimbusSanL-Bol-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/NimbusSanL-Bol-webfont.woff2") format("woff2"), url("/fonts/NimbusSanL-Bol-webfont.woff") format("woff"), url("/fonts/NimbusSanL-Bol-webfont.ttf") format("truetype"), url("/fonts/NimbusSanL-Bol-webfont.svg#nimbus_sans_lbold") format("svg");
-  font-weight: normal;
-  font-style: normal; }
 body {
-  font-family: "nimbus_sans_lbold", sans;
   margin: 30px;
   background: #729285;
   background-size: cover;
