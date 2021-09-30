@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Swift Lyrics</title>
+    <link rel="icon" href="favicon.ico?">
 </head>
-<body>
-
-    <header>
-        <h1>Taylor Swift | lyric search</h1>
-    </header>   
-    <main>
-        <section>
-            <p>Search to find out how many times specific words appear in Taylor Swift songs.</p>
-        </section>
-        <section class ="search-container">
-            <input id="search-input" type="text" placeholder="Search a lyric...">
-            <button id="search-button" onclick="enterSearch();">search</button>
-        </section>
-        <section id="results"></section>
-    </main>
-
+<body>  
+    <div class="outline">
+    <section class="left">
+        <span>I hope you like Taylor Swift</span>
+    </section>
+    <section class="right">
+        <img class="rose" src="/images/rose.png">
+        <header>
+            <h1>Lyric search</h1>
+        </header> 
+        <main>
+                <p>Search to find the frequency of specific words in Taylor Swift's <span>folklore</span> and <span>evermore</span> albums.</p>
+                <input id="search-input" type="text" placeholder="Search a word...">
+                <button id="search-button" onclick="enterSearch();">search</button>
+            <section id="results"></section>
+        </main>
+    </section>
+    </div>
     <script src="songs.js"></script>
     <script src="script.js"></script>
 </body>

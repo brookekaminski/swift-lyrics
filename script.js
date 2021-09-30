@@ -49,9 +49,11 @@ function enterSearch(){
 
             // gets length of object to find amount of times search is in song
             instances = Object.keys(results).length;
+
+            display.classList.add("results");
     
             // push song tracks to list
-            tracks.push(`<li><strong>${song.track}:</strong> ${instances} times</li>`);
+            tracks.push(`<li>${song.track}: <strong>${instances}</strong> times</li>`);
             
             // join list of songs to remove comma
             list = tracks.join(' ');
@@ -71,10 +73,10 @@ function enterSearch(){
     if (search === ''){
         display.innerHTML = '';
     } else if (numOfSongs === 1) {
-        display.innerHTML = `<p>Taylor sings the lyrics '${search}' in ${numOfSongs} song. This song is:</p>
+        display.innerHTML = `<p>Taylor sings the lyrics '${search}' in <strong>${numOfSongs}</strong> song. This song is:</p>
         <ul>${list}</ul>`
     } else if (numOfSongs > 1) {
-        display.innerHTML = `<p>Taylor sings the lyrics '${search}' in ${numOfSongs} songs. These songs are:</p>
+        display.innerHTML = `<p>Taylor sings the lyrics '${search}' in <strong>${numOfSongs}</strong> songs. These songs are:</p>
         <ul>${list}</ul>`;
     } else {
         display.innerHTML = 'Taylor never sings that word!';

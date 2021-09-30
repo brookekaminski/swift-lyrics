@@ -1,13 +1,58 @@
 @import url("https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap");
+@font-face {
+  font-family: 'nimbus_sans_lbold';
+  src: url("/fonts/NimbusSanL-Bol-webfont.eot");
+  src: url("/fonts/NimbusSanL-Bol-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/NimbusSanL-Bol-webfont.woff2") format("woff2"), url("/fonts/NimbusSanL-Bol-webfont.woff") format("woff"), url("/fonts/NimbusSanL-Bol-webfont.ttf") format("truetype"), url("/fonts/NimbusSanL-Bol-webfont.svg#nimbus_sans_lbold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
 body {
+  font-family: "nimbus_sans_lbold", sans;
   margin: 30px;
-  background: url(/images/bg.jpg);
+  background: #729285;
   background-size: cover;
-  font-family: "IM Fell English", serif;
-  text-align: center; }
+  text-align: center;
+  font-family: "IM Fell English", serif; }
 
-h1 {
-  margin-top: 100px; }
+.outline {
+  min-height: 90vh;
+  max-width: 1200px;
+  margin: 5vh auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
+
+.left {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 59%, rgba(0, 0, 0, 0.5) 100%), url("/images/wallpaper.jpeg") no-repeat;
+  background-size: cover;
+  border-right: 8px solid #1A344B;
+  display: flex; }
+  .left span {
+    align-self: center;
+    font-size: 50px;
+    padding: 50px;
+    color: #f4efed; }
+    @media screen and (min-width: 768px) {
+      .left span {
+        font-size: 80px; } }
+
+.right {
+  background: #f4efed;
+  padding: 25px 50px; }
+  .right h1 {
+    margin: 0; }
+  .right span {
+    font-weight: bold;
+    color: #729285; }
+
+main {
+  display: flex;
+  flex-direction: column; }
+
+.rose {
+  width: 150px;
+  margin: 0 auto; }
 
 button,
 input {
@@ -16,8 +61,9 @@ input {
 input {
   margin-bottom: 20px;
   padding: 10px 30px;
-  background: rgba(255, 255, 255, 0.5);
+  background: none;
   border: none;
+  border-bottom: 2px solid;
   border-radius: 0;
   letter-spacing: 1px; }
 
@@ -27,32 +73,29 @@ button {
   appearance: none;
   border-radius: 0;
   cursor: pointer;
-  display: inline-block;
-  padding: 10px 30px;
-  background: #867592;
-  font-size: 1.1em;
+  padding: 15px;
+  background: #1A344B;
+  font-size: 1.2em;
+  color: #f4efed;
   border: none;
   -webkit-transition: .3s ease;
   -o-transition: .3s ease;
   transition: .3s ease; }
+  button:hover, button:active, button:focus {
+    background: #944A25; }
 
 input[type=text]:focus {
   border-bottom: 2px solid transparent; }
 
-.search-container {
-  text-align: center; }
-
-section {
-  max-width: 500px;
-  margin: 0 auto; }
-
-#results {
+.results {
+  max-height: 250px;
+  overflow: auto;
+  margin: 25px 0;
+  padding: 0 40px 25px;
+  line-height: 2;
   text-align: left; }
 
-.thirteen {
-  text-align: center; }
-  .thirteen strong {
-    color: #867592;
-    font-size: 48px; }
+strong {
+  color: #944A25; }
 
 /*# sourceMappingURL=style.css.map */
